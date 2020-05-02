@@ -6,6 +6,7 @@ import yaml
 from getpass import getpass
 from dnac import dnac_api as api
 from pprint import pprint
+from tabulate import tabulate
 
 dnac_details = {
   "host": "dna-3-dnac.campus.wwtatc.local",
@@ -64,10 +65,20 @@ d = api.dnaCenterAPI(**dnac_details)
 
 # ================================================
 # Start Discovery
-with open("vars/new_cred_discovery.json", "r") as file:
-    stream = file.read()
-    discovery = json.loads(stream)
+# with open("vars/new_cred_discovery.json", "r") as file:
+#     stream = file.read()
+#     discovery = json.loads(stream)
 
-result = d.start_discovery(discovery)
-print(result, result.text, result.json())
+# result = d.start_discovery(discovery)
+# print(result, result.text, result.json())
+# ================================================
+
+# ================================================
+# Get Devices
+devices = d.get_devices()
+pprint(devices)
+# Output with tabulate
+tbl_header = ["hostname", "id", "MgmtIP", "PlatformID"]
+table_data = [(d["hostname"], d["id"], d["managementIpAddress"], d["platformId"]) for d in devices["response"]]
+print(tabulate(table_data, headers=tbl_header,tablefmt="fancy_grid"))
 # ================================================

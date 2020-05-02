@@ -141,3 +141,13 @@ class dnaCenterAPI():
 
         return results
 
+
+    def get_devices(self):
+
+        _url = f"https://{self.host}/dna/intent/api/v1/network-device"
+
+        results = self.session.get(_url)
+
+        devices = results.json()
+
+        return devices
