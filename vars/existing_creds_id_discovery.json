@@ -1,0 +1,17 @@
+{
+    "discoveryType": "Range",
+    "preferredMgmtIPMethod": "UseLoopBack",
+    "ipAddressList": "192.168.19.2-192.168.19.5",
+    "ipFilterList": [],
+    "protocolOrder": "ssh",
+    "cdpLevel": "16",
+    "lldpLevel": "16",
+    "globalCredentialIdList": [
+        "1c535776-c98a-44e8-a43a-2edc4fe285f6",
+        "dee270dd-748d-480d-8d67-a1a354f26232",
+        "ab3b8e85-571d-403b-862b-6e4e52432ae7"
+    ],
+    "timeout": "5",
+    "retry": "3",
+    "name": "atc56-switches"
+}

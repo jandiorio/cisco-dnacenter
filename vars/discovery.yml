@@ -1,0 +1,59 @@
+cdpLevel: 1
+discoveryType: RANGE
+enablePasswordList:
+ - "WWTwwt1!"
+globalCredentialIdList:
+ - "Campus Admin"
+# httpReadCredential:
+#  comments: string
+#  credentialType: string
+#  description: string
+#  id: string
+#  instanceTenantId: string
+#  instanceUuid: string
+#  password: string
+#  port: integer
+#  secure: boolean
+#  username: string
+# httpWriteCredential:
+#  comments: string
+#  credentialType: string
+#  description: string
+#  id: string
+#  instanceTenantId: string
+#  instanceUuid: string
+#  password: string
+#  port: integer
+#  secure: boolean
+#  username: string
+ipAddressList: ["192.168.200.1 - 192.168.200.4"]
+# ipFilterList:
+#  -
+#    string
+# lldpLevel: integer
+name: Discovery ATC56
+# netconfPort: string
+# noAddNewDevice: boolean
+# parentDiscoveryId: string
+# passwordList:
+#  -
+#    string
+preferredMgmtIPMethod: Loopback
+protocolOrder: ssh
+reDiscovery: false
+retry: 3
+# snmpAuthPassphrase: string
+# snmpAuthProtocol: v2
+# snmpMode: v2
+# snmpPrivPassphrase: string
+# snmpPrivProtocol: string
+# snmpROCommunity: string
+# snmpROCommunityDesc: string
+snmpRWCommunity: "WWTwwt1!"
+snmpRWCommunityDesc: "SNMP-WRITE"
+# snmpUserName: string
+snmpVersion: v2
+timeout: 120
+updateMgmtIp: false
+userNameList:
+ - wwt

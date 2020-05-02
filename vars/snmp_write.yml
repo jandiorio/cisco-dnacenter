@@ -1,0 +1,4 @@
+- comments: SNMP_WRITE
+  credentialType: GLOBAL
+  description: SNMP_WRITE
+  writeCommunity: "WWTwwt1!"

@@ -1,0 +1,27 @@
+{
+    "discoveryType": "Range",
+    "preferredMgmtIPMethod": "UseLoopBack",
+    "ipAddressList": "192.168.19.2-192.168.19.5",
+    "ipFilterList": [],
+    "protocolOrder": "ssh",
+    "cdpLevel": "16",
+    "lldpLevel": "16",
+    "globalCredentialIdList": [],
+    "timeout": "5",
+    "retry": "3",
+    "name": "p-atc-devices",
+    "cliDescriptionList": [
+        "new-wwt"
+    ],
+    "userNameList": [
+        "wwt"
+    ],
+    "passwordList": [
+        "WWTwwt1!"
+    ],
+    "enablePasswordList": [
+        "WWTwwt1!"
+    ],
+    "snmpRWCommunity": "WWTwwt1!",
+    "snmpRWCommunityDesc": "NEW_SNMP"
+}
