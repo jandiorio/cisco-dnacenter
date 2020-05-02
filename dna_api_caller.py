@@ -75,10 +75,25 @@ d = api.dnaCenterAPI(**dnac_details)
 
 # ================================================
 # Get Devices
-devices = d.get_devices()
-pprint(devices)
-# Output with tabulate
-tbl_header = ["hostname", "id", "MgmtIP", "PlatformID"]
-table_data = [(d["hostname"], d["id"], d["managementIpAddress"], d["platformId"]) for d in devices["response"]]
-print(tabulate(table_data, headers=tbl_header,tablefmt="fancy_grid"))
+# devices = d.get_devices()
+# pprint(devices)
+# # Output with tabulate
+# tbl_header = ["hostname", "id", "MgmtIP", "PlatformID"]
+# table_data = [(d["hostname"], d["id"], d["managementIpAddress"], d["platformId"]) for d in devices["response"]]
+# print(tabulate(table_data, headers=tbl_header,tablefmt="fancy_grid"))
+# ================================================
+
+# ================================================
+# Assign Devices to Site
+result, site = d.get_site("Global/Central/Maryland Heights/atc56")
+site_id = site["response"][0]["id"]
+
+with open("vars/device_to_site.yml", "r") as file:
+    stream = file.read()
+    payload = yaml.safe_load(stream)
+
+pprint(payload)
+
+results = d.assign_device_to_site(site_id, payload)
+print(results, results.text, results.json())
 # ================================================

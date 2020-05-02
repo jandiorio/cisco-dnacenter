@@ -151,3 +151,11 @@ class dnaCenterAPI():
         devices = results.json()
 
         return devices
+
+
+    def assign_device_to_site(self, site_id, payload):
+        _url = f"https://{self.host}/dna/system/api/v1/site/{site_id}/device"
+        self.session.headers.update({"__runsync": "true"})
+
+        results = self.session.post(_url, json=payload)
+        return results

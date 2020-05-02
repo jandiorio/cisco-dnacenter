@@ -1,6 +1,6 @@
 {
     "discoveryType": "Range",
-    "preferredMgmtIPMethod": "UseLoopBack",
+    "preferredMgmtIPMethod": "None",
     "ipAddressList": "192.168.19.2-192.168.19.5",
     "ipFilterList": [],
     "protocolOrder": "ssh",
