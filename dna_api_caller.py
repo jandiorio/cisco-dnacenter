@@ -7,6 +7,7 @@ from getpass import getpass
 from dnac import dnac_api as api
 from pprint import pprint
 from tabulate import tabulate
+import requests.exceptions
 
 dnac_details = {
   "host": "dna-3-dnac.campus.wwtatc.local",
@@ -15,19 +16,24 @@ dnac_details = {
   "verify": False
 }
 
-d = api.dnaCenterAPI(**dnac_details)
+try:
+  d = api.dnaCenterAPI(**dnac_details)
+except requests.exceptions.HTTPError as err:
+  print(f"Login Failed: {err}")
+  sys.exit()
 
 # devices = ["4da90012-3b23-4e98-86b2-237c347684aa"]
-# commands = ["show ip route", "sh ip arp"]
+devices = [""]
+commands = ["show ip route", "sh ip arp"]
 
-# output = d.command_runner(devices, commands)
+output = d.command_runner(devices, commands)
 
-# pprint(output["file_results"])
+pprint(output["file_results"])
 
-# for device in output["file_results"]:
-#     for cmd in commands:
-#         for line in (device["commandResponses"]["SUCCESS"][cmd].split('\n')):
-#             print(line)
+for device in output["file_results"]:
+    for cmd in commands:
+        for line in (device["commandResponses"]["SUCCESS"][cmd].split('\n')):
+            print(line)
 
 # ================================================
 # SITES
@@ -85,8 +91,8 @@ d = api.dnaCenterAPI(**dnac_details)
 
 # ================================================
 # Assign Devices to Site
-result, site = d.get_site("Global/Central/Maryland Heights/atc56")
-site_id = site["response"][0]["id"]
+# result, site = d.get_site("Global/Central/Maryland Heights/atc56")
+site_id = d.get_site_id_by_name("Global/Central/Maryland Heights/atc56")
 
 with open("vars/device_to_site.yml", "r") as file:
     stream = file.read()

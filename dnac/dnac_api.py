@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import json
 import requests
 
@@ -38,7 +39,9 @@ class dnaCenterAPI():
             self.login_status = results.status_code
             self.session.headers.update({"X-Auth-Token": results.json()["Token"]})
         elif results.status_code == 401:
-            self.login_status = results.status_code
+            results.raise_for_status()
+            # raise ConnectionError(f"Unable to obtain token: {results.text}")
+            # self.login_status = results.status_code
 
 
     def get_site(self, name, siteId=None, type=None):
@@ -57,6 +60,12 @@ class dnaCenterAPI():
         site = results.json()
 
         return results, site
+
+
+    def get_site_id_by_name(self, site_name):
+        results, site = self.get_site(name=site_name)
+        if results.ok:
+            return site["response"][0]["id"]
 
 
     def create_site(self, payload):
@@ -93,7 +102,12 @@ class dnaCenterAPI():
         }
 
         results = self.session.post(_url, json=payload)
-        task_results = self.task_checker(results.json()["response"]["taskId"])
+        if results.ok:
+            task_results = self.task_checker(results.json()["response"]["taskId"])
+        else:
+            print(results, results.text)
+            sys.exit(1)
+
 
         file = json.loads(task_results.json()["response"]["progress"])
         command_results = self.get_file(file["fileId"])
@@ -159,3 +173,16 @@ class dnaCenterAPI():
 
         results = self.session.post(_url, json=payload)
         return results
+
+
+    def create_template_project(self):
+        pass
+
+    def create_template(self):
+        pass
+
+    def create_network_profile(self):
+        pass
+
+    def deploy_template(self):
+        pass
