@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import sys
+import pytest
 from dnac import dnac_api as api
+from requests.exceptions import HTTPError
 
 dnac_details = {
   "host": "dna-3-dnac.campus.wwtatc.local",
@@ -22,8 +24,6 @@ def test_login_failure():
 
     dnac_details["password"] = "WRONGPASSWORD"
 
-    d = api.dnaCenterAPI(**dnac_details)
-
-    assert d.login_status == 401
-
-
+    with pytest.raises(HTTPError):
+        d = api.dnaCenterAPI(**dnac_details)
+        assert d.login_status == 401

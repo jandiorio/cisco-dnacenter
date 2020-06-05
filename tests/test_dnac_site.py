@@ -17,8 +17,8 @@ def test_create_site_success():
 
     site = {
         "type": "area",
-        "site":{
-            "area":{
+        "site": {
+            "area": {
                 "name": "test_site",
                 "parentName": "Global"
             }
@@ -28,13 +28,6 @@ def test_create_site_success():
     results = d.create_site(site)
     print(results.json())
     assert results.status_code == 200
-
-dnac_details = {
-  "host": "dna-3-dnac.campus.wwtatc.local",
-  "username": "wwt",
-  "password": "WWTwwt1!",
-  "verify": False
-}
 
 
 # def test_create_site_success():
