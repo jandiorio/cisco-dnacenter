@@ -44,6 +44,9 @@ class dnaCenterAPI():
             self.login_status = results.status_code
 
     def get_site(self, name, siteId=None, type=None):
+        """
+        Retrieve site details
+        """
 
         _url = f"https://{self.host}/dna/intent/api/v1/site"
 
